@@ -1,6 +1,6 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Quote from "./components/Quote";
+import SavedQuotesList from "./components/SavedQuotesList";
 import React, { useState, useEffect } from "react";
 
 const initialValues = {
@@ -8,6 +8,7 @@ const initialValues = {
   author: "",
 };
 let InitialCounter = 0;
+
 function App() {
   const [quote, setQuote] = useState(initialValues);
   const [counter, setCounter] = useState(InitialCounter);
@@ -21,7 +22,7 @@ function App() {
     const url = "https://type.fit/api/quotes";
     const data = await fetch(url);
     const res = await data.json();
-    console.log(typeof res);
+    console.log(counter);
     const { text, author } = res[counter];
     const changedQuote = {
       ...quote,
@@ -36,10 +37,10 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <header>
         <Quote quote={quote} counterToogle={counterToggle} />
       </header>
+      <SavedQuotesList quote={quote} />
     </div>
   );
 }
