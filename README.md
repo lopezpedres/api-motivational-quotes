@@ -1,14 +1,12 @@
-#Getting Started
-This a project to practice the consuption of APIs with react and the fetch method
+# Getting Started
+## Description
+This is a project to practice the consumption of API with react and the fetch method
+The APIs are coming from https://type.fit/api/quotes
+## Start
+Clone the repo and install the packages 
 
-Clone the repo and install the packages
-`bash
-
-npm install `
+` npm install`
 
 After that simply run
 
-`bash
-
-npm start
-`
+`npm start`
