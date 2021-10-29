@@ -1,14 +1,17 @@
 import React from "react";
 import SavedQuote from "./SavedQuote";
 
-let quotes = [];
-//Create the useState for the quotes
+const SavedQuotesList = ({ quotes, setQuotesList }) => {
+  const quoteDelete = (quoteID) => {
+    const changedquotes = quotes.filter((quote) => quoteID !== quote.id);
+    setQuotesList(changedquotes);
+  };
 
-const SavedQuotesList = ({ quote }) => {
   return (
     <>
+      {console.log(quotes)}
       {quotes.map((quote) => (
-        <SavedQuote quote={quote} />
+        <SavedQuote quote={quote} key={quote.id} quoteDelete={quoteDelete} />
       ))}
     </>
   );

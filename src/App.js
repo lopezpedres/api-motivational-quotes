@@ -9,9 +9,16 @@ const initialValues = {
 };
 let InitialCounter = 0;
 
+const quotesList = [
+  { id: 1, text: "Text 1", author: "Author 1" },
+  { id: 2, text: "Text 2", author: "Author 2" },
+];
+
 function App() {
   const [quote, setQuote] = useState(initialValues);
   const [counter, setCounter] = useState(InitialCounter);
+  const [quotes, setQuotesList] = useState(quotesList);
+  const [error, setError] = useState(null);
 
   const counterToggle = () => {
     const newCounter = InitialCounter++;
@@ -38,9 +45,16 @@ function App() {
   return (
     <div className="App">
       <header>
-        <Quote quote={quote} counterToogle={counterToggle} />
+        <Quote
+          quotes={quotes}
+          quote={quote}
+          counterToogle={counterToggle}
+          setQuotesList={setQuotesList}
+          setError={setError}
+        />
+        {error && <div className="alert alert-danger"> {error}</div>}
       </header>
-      <SavedQuotesList quote={quote} />
+      <SavedQuotesList quotes={quotes} setQuotesList={setQuotesList} />
     </div>
   );
 }

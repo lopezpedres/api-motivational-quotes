@@ -1,6 +1,6 @@
 import React from "react";
 
-const SavedQuote = (quote) => {
+const SavedQuote = ({ quote, quoteDelete }) => {
   return (
     <div className="card m-4">
       <div className="card-body">
@@ -9,6 +9,13 @@ const SavedQuote = (quote) => {
           <footer className="blockquote-footer">{quote.author}</footer>
         </blockquote>
       </div>
+      {/* Create an Onclick to*/}
+      <button
+        onClick={() => quoteDelete(quote.id)}
+        className="btn btn-small btn-warning"
+      >
+        Delete
+      </button>
     </div>
   );
 };
