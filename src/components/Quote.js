@@ -4,7 +4,7 @@ const Quote = ({ quotes, quote, counterToogle, setQuotesList, setError }) => {
   const addHandler = () => {
     quotes.forEach((q) => {
       if (q.text === quote.text) {
-        setError("nooo");
+        setError("You already added that quote ");
       } else {
         addQuote();
       }
