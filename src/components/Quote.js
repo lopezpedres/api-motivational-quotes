@@ -2,13 +2,16 @@ import React from "react";
 
 const Quote = ({ quotes, quote, counterToogle, setQuotesList, setError }) => {
   const addHandler = () => {
-    quotes.forEach((q) => {
+    if (quotes.length === 0) {
+      addQuote();
+    }
+    for (const q of quotes) {
       if (q.text === quote.text) {
         setError("You already added that quote ");
-      } else {
-        addQuote();
-      }
-    });
+        setTimeout(() => setError(null), 3000);
+        return;
+      } else addQuote();
+    }
   };
 
   const addQuote = () => {
