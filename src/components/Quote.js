@@ -1,18 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const Quote = ({ quotes, quote, counterToogle, setQuotesList, setError }) => {
+const Quote = ({
+  quotes,
+  quote,
+  counterToogle,
+  setQuotesList,
+  setError,
+  setSuccess,
+}) => {
   const addHandler = () => {
     if (quotes.length === 0) {
       addQuote();
     }
-    for (const q of quotes) {
-      if (q.text === quote.text) {
-        setError("You already added that quote ");
-        setTimeout(() => setError(null), 3000);
-        return;
-      } else addQuote();
+    if (quotes.filter((q) => q.text === quote.text).length > 0) {
+      setError("Quote already added");
+    } else {
+      addQuote();
+      setSuccess("Quote added!");
     }
   };
+
+  // clear error effect
+  useEffect(() => {
+    // clear error when quote is changed
+    setTimeout(() => setError(null), 1000);
+  }, [quote]);
+
+  useEffect(() => {
+    // clear error when quote is changed
+    setTimeout(() => setSuccess(null), 3000);
+  }, [quote]);
 
   const addQuote = () => {
     console.log("This is the to add Quote", quote);
@@ -27,8 +44,8 @@ const Quote = ({ quotes, quote, counterToogle, setQuotesList, setError }) => {
 
   return (
     <div style={{ fontFamily: "Zen Kaku Gothic Antique" }}>
-      <h1>{quote.text}</h1>
-      <span> {quote.author ? `— ` + quote.author : `Unknown`}</span> <br />
+      <h1>{quote.text ? quote.text : "Loading..."}</h1>
+      <span> {quote.author ? "—" + quote.author : `Unknown`}</span> <br />
       <button
         className="btn btn-warning m-2"
         type="button"
