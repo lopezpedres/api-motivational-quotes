@@ -16,19 +16,12 @@ const Quote = ({
       setError("Quote already added");
     } else {
       addQuote();
-      setSuccess("Quote added!");
     }
   };
 
   // clear error effect
   useEffect(() => {
-    // clear error when quote is changed
     setTimeout(() => setError(null), 1000);
-  }, [quote]);
-
-  useEffect(() => {
-    // clear error when quote is changed
-    setTimeout(() => setSuccess(null), 3000);
   }, [quote]);
 
   const addQuote = () => {
@@ -40,6 +33,8 @@ const Quote = ({
       author: quote.author,
     };
     setQuotesList([newquote, ...quotes]);
+    setSuccess("Quote added!");
+    setTimeout(() => setSuccess(null), 3000);
   };
 
   return (
